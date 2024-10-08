@@ -6,4 +6,4 @@ import router from './router';
 // Global CSS
 import './assets/main.css';
 
-createApp(App).user(createPinia()).use(router).mount('#app');
+createApp(App).use(createPinia()).use(router).mount('#app');

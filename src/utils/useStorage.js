@@ -1,8 +1,5 @@
-import { projectStorage } from "@/firebase/config";
-import { ref } from "vue";
-import getUser from "./getUser";
-
-const { user } = getUser();
+import { projectStorage } from '@/firebase/config';
+import { ref } from 'vue';
 
 const useStorage = () => {
   const error = ref(null);
@@ -10,7 +7,7 @@ const useStorage = () => {
   const filePath = ref(null);
 
   const uploadImage = async (file) => {
-    filePath.value = `covers/${user.value.uid}/${file.name}`;
+    filePath.value = `pictures/${file.name}`;
     const storageRef = projectStorage.ref(filePath.value);
 
     try {
