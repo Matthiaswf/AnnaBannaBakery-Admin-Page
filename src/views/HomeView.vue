@@ -4,8 +4,17 @@
     <form @submit.prevent="handleSubmit">
       <input type="text" v-model="name" placeholder="Product Name" />
       <input type="text" v-model="price" placeholder="Product Price" />
+      <select v-model="selectedCategory">
+        <option
+          v-for="category in categories"
+          :key="category"
+          :value="category"
+        >
+          {{ category }}
+        </option>
+      </select>
 
-      <label>Project Picture</label>
+      <label>Product Picture</label>
       <input type="file" @change="handleFile" />
       <div class="file-error">{{ fileError }}</div>
       <button type="submit">Add Product</button>
@@ -23,8 +32,20 @@ export default {
     const { filePath, url, uploadImage } = useStorage();
     const { error, addDoc } = useCollection('products');
 
+    const categories = [
+      'Cookies',
+      'Bars',
+      'Fudge',
+      'Scones',
+      'Bread',
+      'Cookie Dough',
+      'Specials',
+    ];
+    const types = ['image/png', 'image/jpeg'];
+
     const name = ref('');
     const price = ref('');
+    const selectedCategory = ref('');
     const file = ref(null);
     const fileError = ref(null);
     const isPending = ref(false);
@@ -38,6 +59,8 @@ export default {
           name: name.value,
           price: price.value,
           filePath: filePath.value,
+          category: selectedCategory.value,
+          pictureUrl: url.value,
           createdAt: timestamp(),
         });
         isPending.value = false;
@@ -48,8 +71,6 @@ export default {
         }
       }
     };
-
-    const types = ['image/png', 'image/jpeg'];
 
     const handleFile = (e) => {
       const selected = e.target.files[0];
@@ -63,9 +84,35 @@ export default {
       }
     };
 
-    return { name, price, file, fileError, handleSubmit, handleFile };
+    return {
+      categories,
+      selectedCategory,
+      name,
+      price,
+      file,
+      fileError,
+      handleSubmit,
+      handleFile,
+    };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.add-product {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-product form {
+  display: flex;
+  flex-direction: column;
+}
+.add-product input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+</style>
