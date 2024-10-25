@@ -1,8 +1,9 @@
 <template>
   <div>
     <h1>Hello</h1>
-    <div v-for="item in products" :key="item.id">
+    <div v-for="item in orders" :key="item.id">
       <div>{{ item.id }}</div>
+      <div>{{ item.status }}</div>
     </div>
   </div>
 </template>
@@ -11,9 +12,9 @@
 import getCollection from '@/utils/getCollection';
 export default {
   setup() {
-    const { documents: products } = getCollection('products');
+    const { documents: orders } = getCollection('orders');
     return {
-      products,
+      orders,
     };
   },
 };
