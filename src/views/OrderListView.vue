@@ -8,8 +8,7 @@
 </template>
 
 <script>
-import { useOrdersStore } from '@/stores/OrdersStore';
-import { storeToRefs } from 'pinia';
+import getCollection from '@/utils/getCollection';
 import OrderDetails from '@/components/OrderDetails.vue';
 
 export default {
@@ -17,17 +16,7 @@ export default {
     OrderDetails,
   },
   setup() {
-    const ordersStore = useOrdersStore();
-    const { orders } = storeToRefs(ordersStore);
-
-    ordersStore
-      .fetchOrders()
-      .then(() => {
-        console.log('Orders fetched:', orders.value);
-      })
-      .catch((error) => {
-        console.error('Error fetching orders:', error);
-      });
+    const { documents: orders } = getCollection('orders');
 
     return {
       orders,
