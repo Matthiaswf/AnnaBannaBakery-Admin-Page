@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <h4>Order Id : {{ order.id }}</h4>
+    <h4>Order ID : {{ order.id }}</h4>
     <p>
       Order Date : {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
     </p>
