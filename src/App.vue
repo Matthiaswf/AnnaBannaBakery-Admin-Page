@@ -24,5 +24,7 @@ export default {
 .router-view {
   flex: 1;
   padding: 20px;
+  height: 100%;
+  margin-left: 60px;
 }
 </style>
