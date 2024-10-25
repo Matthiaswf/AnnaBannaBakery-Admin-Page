@@ -12,6 +12,7 @@
 import { useOrdersStore } from '@/stores/OrdersStore';
 import { storeToRefs } from 'pinia';
 import OrderDetails from '@/components/OrderDetails.vue';
+
 export default {
   components: {
     OrderDetails,
@@ -20,7 +21,14 @@ export default {
     const ordersStore = useOrdersStore();
     const { orders } = storeToRefs(ordersStore);
 
-    ordersStore.fetchOrders();
+    ordersStore
+      .fetchOrders()
+      .then(() => {
+        console.log('Orders fetched:', orders.value);
+      })
+      .catch((error) => {
+        console.error('Error fetching orders:', error);
+      });
 
     return {
       orders,

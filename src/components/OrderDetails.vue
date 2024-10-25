@@ -4,14 +4,15 @@
     <p>
       Order Date: {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
     </p>
-    <p>
-      Items - Total Quantity:
+    <p class="product-count">
+      Products Total:
+      {{ order.cart.length }}
+    </p>
+    <p class="item-count">
+      Total Units:
       {{ order.cart.reduce((total, item) => total + item.quantity, 0) }}
     </p>
-    <p>
-      Unique Item IDs:
-      {{ order.cart.map((item) => item.id).join(', ') }}
-    </p>
+    <p class="item-country">{{ order.contact.country }}</p>
   </div>
 </template>
 
