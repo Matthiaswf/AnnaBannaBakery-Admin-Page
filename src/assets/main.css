@@ -1,0 +1,60 @@
+/* Custom Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Pau+Cin+Hau&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Variables */
+:root {
+  --text: #f5efe6;
+  --background: #171108;
+  --primary: #debf93;
+  --secondary: #885e23;
+  --accent: #d99e4b;
+  --highlight-dark: #221c14;
+  --highlight-light: #3e3423;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Noto Sans Pau Cin Hau';
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Noto Sans Pau Cin Hau';
+  font-weight: 700;
+}
+
+html {
+  font-size: 100%;
+} /* 16px */
+
+h1 {
+  font-size: 3.366rem; /* 53.92px */
+}
+
+h2 {
+  font-size: 2.525rem; /* 40.32px */
+}
+
+h3 {
+  font-size: 1.894rem; /* 30.24px */
+}
+
+h4 {
+  font-size: 1.421rem; /* 22.72px */
+}
+
+h5 {
+  font-size: 1.066rem; /* 17.12px */
+}
+
+small {
+  font-size: 0.6rem; /* 9.6px */
+}
