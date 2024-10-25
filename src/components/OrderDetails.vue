@@ -13,6 +13,9 @@
       {{ order.cart.reduce((total, item) => total + item.quantity, 0) }}
     </p>
     <p class="item-country">Country : {{ order.contact.country }}</p>
+    <router-link :to="{ name: 'order', params: { id: order.id } }">
+      Detailed View
+    </router-link>
   </div>
 </template>
 
