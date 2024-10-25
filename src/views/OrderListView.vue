@@ -2,7 +2,7 @@
   <div>
     <h1>Hello</h1>
     <div v-for="item in products" :key="item.id">
-      <div>1</div>
+      <div>{{ item.id }}</div>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import getCollection from '@/utils/getCollection';
 export default {
   setup() {
-    const products = getCollection('products');
+    const { documents: products } = getCollection('products');
     return {
       products,
     };
