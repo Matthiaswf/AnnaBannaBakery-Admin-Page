@@ -46,8 +46,6 @@ export default {
   height: fit-content;
   padding: 10px;
   margin-left: 60px;
-  border-left: 1px solid #ccc;
-  box-shadow: -5px 0 5px -5px #ccc;
 }
 h3 {
   margin: 0;
