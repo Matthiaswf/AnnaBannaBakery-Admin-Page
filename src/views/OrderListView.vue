@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Hello</h1>
+    <h1>Orders</h1>
+    <span>{{ orders.length }}</span>
     <div v-for="item in orders" :key="item.id">
       <div>{{ item.id }}</div>
       <div>{{ item.status }}</div>
@@ -9,10 +10,15 @@
 </template>
 
 <script>
-import getCollection from '@/utils/getCollection';
+import { useOrdersStore } from '@/stores/OrdersStore';
+import { storeToRefs } from 'pinia';
 export default {
   setup() {
-    const { documents: orders } = getCollection('orders');
+    const ordersStore = useOrdersStore();
+    const { orders } = storeToRefs(ordersStore);
+
+    ordersStore.fetchOrders();
+
     return {
       orders,
     };
