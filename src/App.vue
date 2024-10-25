@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <side-bar-view />
-    <router-view />
+    <router-view class="router-view" />
   </div>
 </template>
 
@@ -20,5 +20,9 @@ export default {
   display: flex;
   height: 100vh;
   width: 100vw;
+}
+.router-view {
+  flex: 1;
+  padding: 20px;
 }
 </style>

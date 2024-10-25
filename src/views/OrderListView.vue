@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>Orders</h1>
-    <span>{{ orders.length }}</span>
-    <div v-for="item in orders" :key="item.id">
+    <div v-for="item in orders" :key="item.id" class="order-container">
       <OrderDetails :order="item" />
     </div>
   </div>
@@ -38,4 +37,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.order-container {
+  height: 180px;
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
+}
+</style>

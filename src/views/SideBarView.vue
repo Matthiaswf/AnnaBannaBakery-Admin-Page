@@ -2,7 +2,7 @@
   <div class="sidebar-container">
     <div class="greeting">
       <img src="../assets/welcomePic.png" alt="welcome picture" />
-      <span class="welcome-message">Welcome back Anna!</span>
+      <span class="welcome-message">Welcome back Anna !</span>
     </div>
     <div class="links">
       <ul>

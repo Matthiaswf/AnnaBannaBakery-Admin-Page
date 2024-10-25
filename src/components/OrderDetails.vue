@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <h4>Order Id: {{ order.id }}</h4>
+  <div class="order">
+    <h4>Order Id : {{ order.id }}</h4>
     <p>
-      Order Date: {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
+      Order Date : {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
     </p>
     <p class="product-count">
-      Products Total:
+      Unique Products :
       {{ order.cart.length }}
     </p>
     <p class="item-count">
-      Total Units:
+      Total Units :
       {{ order.cart.reduce((total, item) => total + item.quantity, 0) }}
     </p>
-    <p class="item-country">{{ order.contact.country }}</p>
+    <p class="item-country">Country : {{ order.contact.country }}</p>
   </div>
 </template>
 
@@ -25,4 +25,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.order {
+  margin: 0px;
+}
+h4 {
+  margin: 0px;
+  font-size: 20px;
+}
+</style>
