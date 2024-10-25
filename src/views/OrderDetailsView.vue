@@ -51,14 +51,12 @@ h3 {
   margin: 0;
 }
 .name-date {
-  padding: 10px;
   border-bottom: 1px solid #ccc;
 
   margin: 10px 0;
   max-width: 800px;
 }
 .cart {
-  padding: 10px;
   border-bottom: 1px solid #ccc;
 
   margin: 10px 0;
