@@ -25,7 +25,9 @@ a {
   color: var(--primary);
   text-decoration: none;
 }
-
+ul {
+  list-style-type: none;
+}
 h1,
 h2,
 h3,

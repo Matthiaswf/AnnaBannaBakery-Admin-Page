@@ -7,7 +7,9 @@
     <div class="links">
       <ul>
         <li>
-          <router-link to="/orders">Orders</router-link>
+          <router-link to="/orders" active-class="active-link"
+            >Orders</router-link
+          >
         </li>
         <li></li>
         <li></li>
@@ -47,8 +49,26 @@ img {
 }
 .welcome-message {
   font-size: 20px;
-  color: var(--white);
+  color: var(--text);
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.links li {
+  margin-top: 10px;
+}
+.links a {
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.links a {
+  text-decoration: none;
+}
+
+.links a.active-link {
+  background-color: var(--background);
+  border-radius: 20px 0 0 20px;
 }
 </style>
