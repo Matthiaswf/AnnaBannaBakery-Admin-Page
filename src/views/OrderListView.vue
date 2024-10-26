@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .order-container {
-  height: 220px;
+  height: 255px;
   width: 400px;
   border: 1px solid #ccc;
   padding: 10px;
