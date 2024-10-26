@@ -23,6 +23,9 @@
       <p>State: {{ order.contact.state }}</p>
       <p>City: {{ order.contact.city }}</p>
       <p>Street Address: {{ order.contact.streetAddress }}</p>
+      <p>ZIP Code: {{ order.contact.zipCode }}</p>
+      <p>Delivery Date: {{ order.contact.deliveryDate }}</p>
+      <p>Delivery Time: {{ order.contact.deliveryTime }}</p>
     </div>
   </div>
 </template>
