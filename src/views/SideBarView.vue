@@ -103,7 +103,7 @@ img {
   color: var(--primary);
 }
 .links a.active-link img {
-  filter: invert(75%) sepia(20%) saturate(500%) hue-rotate(10deg)
-    brightness(100%) contrast(100%);
+  filter: brightness(0) saturate(100%) invert(92%) sepia(7%) saturate(2255%)
+    hue-rotate(328deg) brightness(93%) contrast(86%);
 }
 </style>
