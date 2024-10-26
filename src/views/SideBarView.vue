@@ -7,14 +7,24 @@
     <div class="links">
       <ul>
         <li>
-          <router-link to="/orders" active-class="active-link"
-            >Orders</router-link
-          >
+          <router-link to="/orders" active-class="active-link">
+            <img
+              src="../assets/dashboard_icon.svg"
+              alt="dashboard icon"
+              class="icon"
+            />
+            Orders
+          </router-link>
         </li>
         <li>
-          <router-link to="/products" active-class="active-link"
-            >Products</router-link
-          >
+          <router-link to="/products" active-class="active-link">
+            <img
+              src="../assets/dashboard_icon.svg"
+              alt="dashboard icon"
+              class="icon"
+            />
+            Products
+          </router-link>
         </li>
         <li></li>
       </ul>
@@ -62,6 +72,7 @@ img {
 }
 .links a {
   display: flex;
+  align-items: center;
   padding: 10px;
   padding-left: 20px;
   text-decoration: none;
@@ -69,13 +80,21 @@ img {
   box-sizing: border-box;
   color: var(--text);
 }
-.links a {
-  text-decoration: none;
+.links a img {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+    contrast(100%);
 }
 
 .links a.active-link {
   background-color: var(--background);
   border-radius: 20px 0 0 20px;
   color: var(--primary);
+}
+.links a.active-link img {
+  filter: invert(75%) sepia(20%) saturate(500%) hue-rotate(10deg)
+    brightness(100%) contrast(100%);
 }
 </style>
