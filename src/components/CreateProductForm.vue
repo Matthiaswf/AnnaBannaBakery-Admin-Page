@@ -4,7 +4,8 @@
     <label for="name">Product Name</label>
     <input type="text" required v-model="name" />
     <label for="price">Price</label>
-    <input type="number" required v-model="price" />
+    <p class="instruction">* 00.00 format please</p>
+    <input type="number" placeholder="01.00" required v-model="price" />
     <label for="category">Category</label>
     <select v-model="category">
       <option v-for="category in categories" :key="category" :value="category">
@@ -12,8 +13,8 @@
       </option>
     </select>
     <label>Upload Product image </label>
-    <p class="image-instructions">*Do not upload duplicate img names</p>
-    <p class="image-instructions">*Recommended image size 200x200px</p>
+    <p class="instruction">*Do not upload duplicate img names</p>
+    <p class="instruction">*Recommended image size 200x200px</p>
     <input type="file" @change="handleChange" />
     <div v-if="fileError" class="error">{{ fileError }}</div>
 
@@ -139,6 +140,7 @@ textarea {
 }
 select {
   padding: 8px 6px;
+  margin-top: 1px;
   font-size: 1em;
   color: #777;
   width: 100%;
@@ -160,9 +162,12 @@ button:disabled {
   background: #ddd;
   color: #777;
 }
-.image-instructions {
+
+.instruction {
   font-size: 0.8em;
   color: #777;
+  margin-top: 1px;
+  padding: 0;
 }
 
 .error {
