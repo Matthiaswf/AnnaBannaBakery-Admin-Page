@@ -1,6 +1,6 @@
 <template>
   <div class="products-container">
-    <h3>Products</h3>
+    <h1>Products</h1>
     <div v-for="(group, category) in groupedProducts" :key="category">
       <h4>{{ category }}</h4>
       <div v-for="item in group" :key="item.id" class="product">
