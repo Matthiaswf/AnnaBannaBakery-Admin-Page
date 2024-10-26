@@ -11,7 +11,11 @@
             >Orders</router-link
           >
         </li>
-        <li></li>
+        <li>
+          <router-link to="/products" active-class="active-link"
+            >Products</router-link
+          >
+        </li>
         <li></li>
       </ul>
     </div>
@@ -62,6 +66,7 @@ img {
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
+  color: var(--text);
 }
 .links a {
   text-decoration: none;
@@ -70,5 +75,6 @@ img {
 .links a.active-link {
   background-color: var(--background);
   border-radius: 20px 0 0 20px;
+  color: var(--primary);
 }
 </style>
