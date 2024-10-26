@@ -52,7 +52,7 @@ export default {
 <style scoped>
 .sidebar-container {
   width: 300px;
-  height: 100%;
+  height: 100vh;
   background-color: var(--highlight-dark);
 }
 

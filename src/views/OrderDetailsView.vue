@@ -9,8 +9,9 @@
     </div>
     <div class="cart">
       <h3>Ordered Products</h3>
-      <div v-for="item in order.cart" :key="item.id">
-        <p>{{ item.name }} : {{ item.quantity }}</p>
+      <div v-for="item in order.cart" :key="item.id" class="cart-item">
+        <span class="item-name">{{ item.name }}</span>
+        <span class="item-quantity"> {{ item.quantity }}</span>
       </div>
       <p class="total">Total: ${{ order.cartTotal }}</p>
     </div>
@@ -43,32 +44,50 @@ export default {
 
 <style scoped>
 .order-container {
+  display: flex;
+  flex-direction: column;
   height: fit-content;
-  padding: 10px;
+  padding: 0px;
   margin-left: 60px;
+  margin-top: 60px;
 }
 h3 {
   margin: 0;
 }
 .name-date {
   border-bottom: 1px solid #ccc;
-
   margin: 10px 0;
-  max-width: 800px;
+  max-width: 510px;
 }
 .cart {
   border-bottom: 1px solid #ccc;
-
   margin: 10px 0;
-  max-width: 800px;
+  max-width: 510px;
 }
 .customer-info {
   margin: 10px 0;
-  max-width: 800px;
   border-bottom: 1px solid #ccc;
+  max-width: 510px;
 }
 .total {
   font-size: 1rem;
   font-weight: bold;
+}
+.cart-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 5px;
+}
+.item-name {
+  font-size: 1rem;
+  width: 150px;
+}
+.item-quantity {
+  font-size: 1rem;
+  width: 50px;
 }
 </style>

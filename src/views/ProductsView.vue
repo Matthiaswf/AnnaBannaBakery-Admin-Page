@@ -1,11 +1,13 @@
 <template>
   <div class="products-container">
     <h1>Products</h1>
-    <div v-for="(group, category) in groupedProducts" :key="category">
-      <h4>{{ category }}</h4>
-      <div v-for="item in group" :key="item.id" class="product">
-        <span class="name"> {{ item.name }}</span>
-        <span class="price">${{ item.price }}</span>
+    <div class="product-list">
+      <div v-for="(group, category) in groupedProducts" :key="category">
+        <h4>{{ category }}</h4>
+        <div v-for="item in group" :key="item.id" class="product">
+          <span class="name"> {{ item.name }}</span>
+          <span class="price">${{ item.price }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -56,6 +58,13 @@ h3 {
   margin: 10px 0;
   max-width: 400px;
   gap: 80px;
+}
+.product-list {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  gap: 20px;
 }
 .name {
   width: 400px;
