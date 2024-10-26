@@ -10,6 +10,7 @@
 <script>
 import getCollection from '@/utils/getCollection';
 import OrderDetails from '@/components/OrderDetails.vue';
+import { computed } from 'vue';
 
 export default {
   components: {
@@ -18,8 +19,14 @@ export default {
   setup() {
     const { documents: orders } = getCollection('orders');
 
+    const sortedOrders = computed(() => {
+      return orders.value
+        ? orders.value.slice().sort((a, b) => b.createdAt - a.createdAt)
+        : [];
+    });
+
     return {
-      orders,
+      orders: sortedOrders,
       OrderDetails,
     };
   },
