@@ -63,6 +63,7 @@ img {
 .links a {
   display: flex;
   padding: 10px;
+  padding-left: 20px;
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
