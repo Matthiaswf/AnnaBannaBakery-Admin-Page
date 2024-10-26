@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <side-bar-view />
+    <SideBarView class="sidebar-view" />
     <router-view class="router-view" />
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   display: flex;
   height: 100vh;
   width: 100vw;
+  overflow: auto;
 }
 .router-view {
   flex: 1;
@@ -28,5 +29,11 @@ export default {
   margin-left: 60px;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+.sidebar-view {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 </style>
