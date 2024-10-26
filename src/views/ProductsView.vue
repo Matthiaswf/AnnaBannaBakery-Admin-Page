@@ -8,7 +8,6 @@
         <span class="price">${{ item.price }}</span>
       </div>
     </div>
-    <CreateProductForm />
   </div>
 </template>
 
@@ -18,9 +17,6 @@ import getCollection from '@/utils/getCollection';
 import { computed } from 'vue';
 
 export default {
-  components: {
-    CreateProductForm,
-  },
   setup() {
     const { documents: products } = getCollection('products');
 
@@ -39,7 +35,6 @@ export default {
     return {
       products,
       groupedProducts,
-      CreateProductForm,
     };
   },
 };

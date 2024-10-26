@@ -26,7 +26,16 @@
             Products
           </router-link>
         </li>
-        <li></li>
+        <li>
+          <router-link to="/products/create" active-class="active-link">
+            <img
+              src="../assets/add_icon.svg"
+              alt="dashboard icon"
+              class="icon"
+            />
+            Create Product
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

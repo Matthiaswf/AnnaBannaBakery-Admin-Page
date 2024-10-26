@@ -27,6 +27,7 @@ import { ref } from 'vue';
 import useCollection from '@/utils/useCollection';
 import useStorage from '@/utils/useStorage';
 import { timestamp } from '@/firebase/config';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
     const categories = [
@@ -38,6 +39,8 @@ export default {
       'Cookie  Dough',
       'Special',
     ];
+
+    const router = useRouter();
 
     const { filePath, url, uploadImage } = useStorage();
     const { error, addDoc } = useCollection('products');
@@ -68,6 +71,8 @@ export default {
           price.value = 0;
           category.value = '';
           file.value = null;
+          fileError.value = null;
+          router.push('/products');
         }
       }
     };
