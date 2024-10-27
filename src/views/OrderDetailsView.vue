@@ -60,17 +60,17 @@ h3 {
 .name-date {
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
-  max-width: 510px;
+  max-width: 520px;
 }
 .cart {
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
-  max-width: 510px;
+  max-width: 520px;
 }
 .customer-info {
   margin: 10px 0;
   border-bottom: 1px solid #ccc;
-  max-width: 510px;
+  max-width: 520px;
 }
 .total {
   font-size: 1rem;
