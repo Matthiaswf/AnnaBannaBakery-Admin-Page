@@ -1,6 +1,13 @@
 <template>
   <div class="products-container">
     <h1>Products</h1>
+    <div class="is-pending-message" v-if="isPending">Loading Products...</div>
+    <div
+      v-if="!isPending && Object.keys(groupedProducts).length === 0"
+      class="no-products-text"
+    >
+      No Products found
+    </div>
     <div class="product-list">
       <div v-for="(group, category) in groupedProducts" :key="category">
         <h4>{{ category }}</h4>
@@ -20,10 +27,18 @@
 import CreateProductForm from '@/components/CreateProductForm.vue';
 import getCollection from '@/utils/getCollection';
 import { computed } from 'vue';
+import { ref } from 'vue';
+import { watchEffect } from 'vue';
 
 export default {
   setup() {
+    const isPending = ref(false);
     const { documents: products } = getCollection('products');
+
+    // Watch for changes in the products collection
+    watchEffect(() => {
+      isPending.value = !products.value;
+    });
 
     const groupedProducts = computed(() => {
       if (!products.value) return {};
@@ -38,8 +53,8 @@ export default {
     });
 
     return {
-      products,
       groupedProducts,
+      isPending,
     };
   },
 };
@@ -84,5 +99,15 @@ a {
   text-decoration: none;
   padding: 0;
   margin: 0;
+}
+.is-pending-message {
+  font-size: 2rem;
+  margin-top: 20px;
+  padding-left: 5px;
+}
+.no-products-text {
+  font-size: 20px;
+  margin-top: 20px;
+  padding-left: 5px;
 }
 </style>

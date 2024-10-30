@@ -2,10 +2,10 @@
   <div>
     <h1>Orders</h1>
     <div class="pending-text" v-if="isPending">Loading Orders...</div>
-    <div v-if="orders.length === 0" class="no-orders-text">
+    <div v-if="!isPending && sortedOrders.length === 0" class="no-orders-text">
       No current Orders.
     </div>
-    <div v-for="item in orders" :key="item.id" class="order-container">
+    <div v-for="item in sortedOrders" :key="item.id" class="order-container">
       <OrderDetails :order="item" />
     </div>
   </div>
@@ -38,7 +38,7 @@ export default {
 
     return {
       isPending,
-      orders: sortedOrders,
+      sortedOrders,
       OrderDetails,
     };
   },
