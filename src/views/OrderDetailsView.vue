@@ -6,6 +6,7 @@
         Order Date:
         {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
       </p>
+      <p>Order status: {{ order.status }}</p>
     </div>
     <div class="cart">
       <h3>Ordered Products</h3>
@@ -28,6 +29,10 @@
       <p>Delivery Time: {{ order.contact.deliveryTime }}</p>
     </div>
     <div class="order-buttons">
+      <div class="mark-complete-button">
+        <button @click="handleUpdate">Mark as Complete</button>
+      </div>
+
       <button @click="showPopup = true" v-if="!showPopup">Delete</button>
       <div
         v-if="showPopup"
@@ -66,10 +71,17 @@ export default {
       router.push('/orders');
     };
 
+    const handleUpdate = async () => {
+      await updateDoc({
+        status: 'Complete',
+      });
+    };
+
     return {
       order,
       showPopup,
       handleDelete,
+      handleUpdate,
     };
   },
 };
@@ -123,6 +135,13 @@ h3 {
   font-size: 1rem;
   width: 50px;
 }
+.order-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  max-width: 520px;
+}
+
 .delete-confirmation {
   display: flex;
   flex-direction: column;

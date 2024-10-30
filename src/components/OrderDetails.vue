@@ -4,6 +4,7 @@
     <p>
       Order Date : {{ new Date(order.createdAt.toDate()).toLocaleDateString() }}
     </p>
+    <p>Order Status: {{ order.status }}</p>
     <p class="product-count">
       Unique Products :
       {{ order.cart.length }}
