@@ -36,4 +36,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
+  border: 1px solid var(--secondary);
+  background: white;
+}
+input,
+textarea {
+  border: 0;
+  border-bottom: 1px solid var(--secondary);
+  padding: 10px;
+  outline: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
+}
+</style>

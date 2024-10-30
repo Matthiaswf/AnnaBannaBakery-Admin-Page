@@ -2,9 +2,16 @@
   <div class="sidebar-container">
     <div class="greeting">
       <img src="../assets/welcomePic.png" alt="welcome picture" />
-      <span class="welcome-message">Welcome back Anna !</span>
+      <span class="welcome-message" v-if="!user"
+        >Hello there, please log in
+      </span>
+      <span class="welcome-message" v-if="user">Welcome back Anna !</span>
+      <div class="logout" @click="handleLogout" v-if="user">
+        <span class="material-symbols-outlined"> logout </span>
+        <span class="logout-text">Logout</span>
+      </div>
     </div>
-    <div class="links">
+    <div class="links" v-if="user">
       <ul>
         <li>
           <router-link to="/orders" active-class="active-link">
@@ -42,9 +49,22 @@
 </template>
 
 <script>
+import getUser from '@/utils/getUser';
+import useLogout from '@/utils/useLogout';
+import router from '@/router';
 export default {
   setup() {
-    return {};
+    const { user } = getUser();
+    const { logout } = useLogout();
+
+    const handleLogout = async () => {
+      await logout();
+      router.push('/login');
+    };
+    return {
+      handleLogout,
+      user,
+    };
   },
 };
 </script>
@@ -105,5 +125,24 @@ img {
 .links a.active-link img {
   filter: brightness(0) saturate(100%) invert(92%) sepia(7%) saturate(2255%)
     hue-rotate(328deg) brightness(93%) contrast(86%);
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--text);
+}
+.logout-text {
+  cursor: pointer;
+}
+.material-symbols-outlined {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 }
 </style>

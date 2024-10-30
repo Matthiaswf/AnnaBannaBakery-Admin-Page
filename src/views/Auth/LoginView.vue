@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
 form {
-  width: 400px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -48,8 +48,13 @@ input {
   padding-left: 0.5rem;
 }
 button {
-  width: 4rem;
-  align-self: center;
+  border-radius: 50px;
+  max-width: 100px;
+  height: 2rem;
+  background-color: var(--primary);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 .error {
   color: red;
