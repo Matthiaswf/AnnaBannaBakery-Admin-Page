@@ -1,29 +1,44 @@
 <template>
-  <form @submit.prevent="handleUpdate">
-    <h4>Edit Product</h4>
+  <div>
+    <form @submit.prevent="handleUpdate">
+      <h4>Edit Product</h4>
 
-    <label>Name:</label>
-    <input type="text" v-model="name" />
+      <label>Name:</label>
+      <input type="text" v-model="name" />
 
-    <label>Price</label>
-    <input type="number" v-model="price" class="price" step="0.01" />
-    <label for="category">Category</label>
-    <select v-model="category">
-      <option v-for="category in categories" :key="category" :value="category">
-        {{ category }}
-      </option>
-    </select>
+      <label>Price</label>
+      <input type="number" v-model="price" class="price" step="0.01" />
+      <label for="category">Category</label>
+      <select v-model="category">
+        <option
+          v-for="category in categories"
+          :key="category"
+          :value="category"
+        >
+          {{ category }}
+        </option>
+      </select>
 
-    <div class="form-actions">
-      <button v-if="!isPending">Update Product</button>
-      <button v-else disabled>Updating Product...</button>
-      <button type="button" @click="$emit('changeEditMode')">Cancel</button>
-    </div>
-  </form>
+      <div class="form-actions">
+        <button v-if="!isPending">Update Product</button>
+        <button v-else disabled>Updating Product...</button>
+        <button type="button" @click="$emit('changeEditMode')">Cancel</button>
+      </div>
+    </form>
+    <form @submit.prevent="handlePictureUpdate" class="update-picture-form">
+      <h4>Change Product Image</h4>
+      <p class="instruction">*Do not upload duplicate img names</p>
+      <p class="instruction">*Recommended image size 200x200px</p>
+      <input type="file" @change="handleChange" />
+      <button v-if="!isPending">Save</button>
+      <button v-else disabled>Saving...</button>
+    </form>
+  </div>
 </template>
 
 <script>
 import useDocument from '@/utils/useDocument';
+import useStorage from '@/utils/useStorage';
 import { ref } from 'vue';
 
 export default {
@@ -38,11 +53,16 @@ export default {
       'Cookie Dough',
       'Special',
     ];
+    const types = ['image/png', 'image/jpeg'];
 
     const { isPending, updateDoc } = useDocument('products', props.product.id);
+    const { filePath, url, uploadImage, deleteImage } = useStorage();
     const name = ref(props.product.name);
     const price = ref(props.product.price);
     const category = ref(props.product.category);
+    const file = ref(null);
+    const fileError = ref(null);
+    const originalFilePath = ref(props.product.filePath);
 
     const handleUpdate = async () => {
       await updateDoc({
@@ -53,12 +73,43 @@ export default {
       context.emit('changeEditMode');
     };
 
+    const handlePictureUpdate = async () => {
+      if (file.value && types.includes(file.value.type)) {
+        await uploadImage(file.value);
+        await deleteImage(originalFilePath.value);
+        await updateDoc({
+          pictureUrl: url.value,
+          filePath: filePath.value,
+        });
+        if (!fileError.value) {
+          file.value = null;
+          fileError.value = null;
+          context.emit('changeEditMode');
+        }
+      } else {
+        fileError.value = 'Please select an image file (png or jpeg)';
+      }
+    };
+
+    const handleChange = (e) => {
+      const selected = e.target.files[0];
+
+      if (selected && types.includes(selected.type)) {
+        file.value = selected;
+      } else {
+        file.value = null;
+        fileError.value = 'Please select an image file (png or jpeg)';
+      }
+    };
+
     return {
       name,
       price,
       category,
       categories,
       handleUpdate,
+      handleChange,
+      handlePictureUpdate,
       isPending,
     };
   },
@@ -146,5 +197,11 @@ button:disabled {
   justify-content: flex-start;
   gap: 10px;
   margin-top: 20px;
+}
+.update-picture-form {
+  margin-top: 20px;
+}
+input[type='file'] {
+  color: white;
 }
 </style>
