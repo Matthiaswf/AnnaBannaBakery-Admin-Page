@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="handleUpdate">
-      <h4>Edit Product</h4>
+      <h4>Edit Product Info</h4>
 
       <label>Name:</label>
       <input type="text" v-model="name" />
@@ -20,8 +20,8 @@
       </select>
 
       <div class="form-actions">
-        <button v-if="!isPending">Update Product</button>
-        <button v-else disabled>Updating Product...</button>
+        <button v-if="!isPending">Update Info</button>
+        <button v-else disabled>Updating Info...</button>
         <button type="button" @click="$emit('changeEditMode')">Cancel</button>
       </div>
     </form>
@@ -29,9 +29,9 @@
       <h4>Change Product Image</h4>
       <p class="instruction">*Recommended image size 200x200px</p>
       <input type="file" @change="handleChange" />
-
+      <p class="error" v-if="fileError">{{ fileError }}</p>
       <div class="form-actions">
-        <button v-if="!isPending">Update</button>
+        <button v-if="!isPending">Update Image</button>
         <button v-else disabled>Updating...</button>
         <button type="button" @click="$emit('changeEditMode')">Cancel</button>
       </div>
@@ -78,6 +78,7 @@ export default {
 
     const handlePictureUpdate = async () => {
       isPending.value = true;
+      fileError.value = null;
 
       if (file.value && types.includes(file.value.type)) {
         await uploadImage(file.value);
@@ -92,6 +93,7 @@ export default {
           context.emit('changeEditMode');
         }
       } else {
+        isPending.value = false;
         fileError.value = 'Please select an image file (png or jpeg)';
       }
     };
@@ -116,6 +118,7 @@ export default {
       handleChange,
       handlePictureUpdate,
       isPending,
+      fileError,
     };
   },
 };
