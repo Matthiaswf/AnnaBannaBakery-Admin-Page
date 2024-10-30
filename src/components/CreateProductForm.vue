@@ -166,6 +166,7 @@ button {
 button:disabled {
   background: #ddd;
   color: #777;
+  cursor: not-allowed;
 }
 
 .instruction {
