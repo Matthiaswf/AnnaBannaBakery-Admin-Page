@@ -14,9 +14,11 @@
       </option>
     </select>
 
-    <button v-if="!isPending">Update Product</button>
-    <button v-else disabled>Updating Product...</button>
-    <button type="button" @click="$emit('changeEditMode')">Cancel</button>
+    <div class="form-actions">
+      <button v-if="!isPending">Update Product</button>
+      <button v-else disabled>Updating Product...</button>
+      <button type="button" @click="$emit('changeEditMode')">Cancel</button>
+    </div>
   </form>
 </template>
 
@@ -137,5 +139,12 @@ button:disabled {
   border-radius: 4px;
   padding: 8px;
   margin: 10px 0;
+}
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 20px;
 }
 </style>

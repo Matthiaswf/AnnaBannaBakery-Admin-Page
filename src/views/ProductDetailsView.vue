@@ -12,7 +12,22 @@
       </p>
     </div>
     <div class="product-actions">
-      <button @click="editMode = true">Edit</button>
+      <button @click="editMode = true" v-if="!showPopup">Edit</button>
+      <button @click="showPopup = true" v-if="!showPopup">Delete</button>
+      <div
+        v-if="showPopup"
+        @close="showPopup = false"
+        class="delete-confirmation"
+      >
+        <div class="delete-warning-text">
+          <h3>Warning!</h3>
+          <p>This will permanently delete the product!</p>
+        </div>
+        <div class="delete-buttons">
+          <button @click="showPopup = false">Cancel</button>
+          <button @click="handleDelete">Delete</button>
+        </div>
+      </div>
     </div>
   </div>
   <UpdateProductForm
@@ -36,14 +51,14 @@ export default {
   props: ['id'],
   setup(props) {
     const { document: product } = getDocument('products', props.id);
-    const { deleteDoc, updateDoc } = useDocument('products', props.id);
+    const { deleteDoc } = useDocument('products', props.id);
 
     const editMode = ref(false);
     const showPopup = ref(false);
 
     const handleDelete = async () => {
       await deleteDoc();
-      router.push('/orders');
+      router.push('/products');
     };
 
     return {
@@ -58,11 +73,55 @@ export default {
 </script>
 
 <style scoped>
+.-product-container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 0px;
+  margin-left: 60px;
+  margin-top: 60px;
+}
 img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+.product-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 10px 0;
+  max-width: 520px;
+}
+.delete-confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 520px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.delete-warning-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.delete-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+button {
+  height: 40px;
+  width: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  cursor: pointer;
 }
 </style>
