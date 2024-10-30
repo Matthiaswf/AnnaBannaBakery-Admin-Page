@@ -5,7 +5,13 @@
     <input type="text" required v-model="name" />
     <label for="price">Price</label>
     <p class="instruction">* 00.00 format please</p>
-    <input type="number" placeholder="01.00" required v-model="price" />
+    <input
+      type="number"
+      placeholder="01.00"
+      required
+      v-model="price"
+      step="0.01"
+    />
     <label for="category">Category</label>
     <select v-model="category">
       <option v-for="category in categories" :key="category" :value="category">

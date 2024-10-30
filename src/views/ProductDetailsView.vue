@@ -5,7 +5,15 @@
       <img :src="product.pictureUrl" :alt="product.name" />
       <p class="price">Price: ${{ product.price }}</p>
     </div>
+    <div class="product-actions">
+      <button @click="editMode = true">Edit</button>
+    </div>
   </div>
+  <UpdateProductForm
+    v-else
+    :product="product"
+    @changeEditMode="editMode = false"
+  />
 </template>
 
 <script>
@@ -13,8 +21,12 @@ import getDocument from '@/utils/getDocument';
 import useDocument from '@/utils/useDocument';
 import router from '@/router';
 import { ref } from 'vue';
+import UpdateProductForm from '@/components/UpdateProductForm.vue';
 
 export default {
+  components: {
+    UpdateProductForm,
+  },
   props: ['id'],
   setup(props) {
     const { document: product } = getDocument('products', props.id);
@@ -28,17 +40,12 @@ export default {
       router.push('/orders');
     };
 
-    const handleUpdate = async (value) => {
-      await updateDoc({
-        // Updates
-      });
-    };
-
     return {
       product,
       showPopup,
       handleDelete,
-      handleUpdate,
+      editMode,
+      UpdateProductForm,
     };
   },
 };
@@ -46,7 +53,10 @@ export default {
 
 <style scoped>
 img {
-  height: 250px;
-  width: 250px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 </style>
