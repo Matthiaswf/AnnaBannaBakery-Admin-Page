@@ -25,8 +25,6 @@ const getCollection = (collection, query) => {
       // update values
       documents.value = results;
       error.value = null;
-      console.log('data fetched');
-      console.log(documents.value);
     },
     (err) => {
       console.log(err.message);
