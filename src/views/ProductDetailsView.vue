@@ -3,7 +3,13 @@
     <div class="product-details" v-if="product">
       <h2>{{ product.name }}</h2>
       <img :src="product.pictureUrl" :alt="product.name" />
-      <p class="price">Price: ${{ product.price }}</p>
+      <p class="price">
+        Price: ${{
+          typeof product.price === 'number'
+            ? product.price.toFixed(2)
+            : product.price
+        }}
+      </p>
     </div>
     <div class="product-actions">
       <button @click="editMode = true">Edit</button>
