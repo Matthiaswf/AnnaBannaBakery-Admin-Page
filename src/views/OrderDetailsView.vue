@@ -30,7 +30,15 @@
     </div>
     <div class="order-buttons">
       <div class="mark-complete-button">
-        <button @click="handleUpdate">Mark as Complete</button>
+        <button
+          v-if="order.status === 'Complete'"
+          @click="handleUpdate('Pending')"
+        >
+          Mark as Pending
+        </button>
+        <button @click="handleUpdate('Complete')" v-else>
+          Mark as Complete
+        </button>
       </div>
 
       <button @click="showPopup = true" v-if="!showPopup">Delete</button>
@@ -71,9 +79,9 @@ export default {
       router.push('/orders');
     };
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (value) => {
       await updateDoc({
-        status: 'Complete',
+        status: value,
       });
     };
 
