@@ -27,7 +27,7 @@ export default {
     const handleSubmit = async () => {
       const res = await signup(email.value, password.value, displayname.value);
       if (!error.value) {
-        router.push('/');
+        router.push('/orders');
       }
     };
 

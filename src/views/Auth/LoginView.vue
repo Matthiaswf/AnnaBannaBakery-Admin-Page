@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import useLogin from "@/utils/useLogin";
-import { useRouter } from "vue-router";
-import { ref } from "vue";
+import useLogin from '@/utils/useLogin';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 export default {
   setup() {
     const { error, login, isPending } = useLogin();
 
     const router = useRouter();
-    const email = ref("");
-    const password = ref("");
+    const email = ref('');
+    const password = ref('');
 
     const handleSubmit = async () => {
       const res = await login(email.value, password.value);
       if (!error.value) {
-        router.push("/");
+        router.push('/orders');
       }
       isPending.value = false;
     };

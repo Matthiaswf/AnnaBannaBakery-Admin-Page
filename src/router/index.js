@@ -67,6 +67,14 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: SignupView,
+    beforeEnter: (to, from, next) => {
+      let user = projectAuth.currentUser;
+      if (user) {
+        next({ name: 'orders' });
+      } else {
+        next();
+      }
+    },
   },
 ];
 
