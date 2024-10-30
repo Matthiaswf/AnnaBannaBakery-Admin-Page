@@ -7,6 +7,9 @@
         <div v-for="item in group" :key="item.id" class="product">
           <span class="name"> {{ item.name }}</span>
           <span class="price">${{ Number(item.price).toFixed(2) }}</span>
+          <router-link :to="{ name: 'product', params: { id: item.id } }">
+            <span class="material-symbols-outlined"> info </span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -71,5 +74,15 @@ h3 {
 }
 .price {
   width: 100px;
+}
+.material-symbols-outlined {
+  font-size: 24px;
+  padding: 0;
+  color: white;
+}
+a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
 }
 </style>

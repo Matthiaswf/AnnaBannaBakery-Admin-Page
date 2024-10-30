@@ -4,6 +4,7 @@ import OrderListView from '../views/OrderListView.vue';
 import OrderDetailsView from '@/views/OrderDetailsView.vue';
 import ProductListView from '@/views/ProductsView.vue';
 import CreateProductView from '@/views/CreateProductView.vue';
+import ProductDetailsView from '@/views/ProductDetailsView.vue';
 
 const routes = [
   {
@@ -31,6 +32,12 @@ const routes = [
     path: '/products/create',
     name: 'create-product',
     component: CreateProductView,
+  },
+  {
+    path: '/products/:id',
+    name: 'product',
+    component: ProductDetailsView,
+    props: true,
   },
 ];
 
