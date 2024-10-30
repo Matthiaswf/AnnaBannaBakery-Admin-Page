@@ -78,7 +78,7 @@ h3 {
 .material-symbols-outlined {
   font-size: 24px;
   padding: 0;
-  color: white;
+  color: var(--highlight-light);
 }
 a {
   text-decoration: none;
