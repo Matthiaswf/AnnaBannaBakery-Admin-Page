@@ -27,11 +27,14 @@
     </form>
     <form @submit.prevent="handlePictureUpdate" class="update-picture-form">
       <h4>Change Product Image</h4>
-      <p class="instruction">*Do not upload duplicate img names</p>
       <p class="instruction">*Recommended image size 200x200px</p>
       <input type="file" @change="handleChange" />
-      <button v-if="!isPending">Save</button>
-      <button v-else disabled>Saving...</button>
+
+      <div class="form-actions">
+        <button v-if="!isPending">Update</button>
+        <button v-else disabled>Updating...</button>
+        <button type="button" @click="$emit('changeEditMode')">Cancel</button>
+      </div>
     </form>
   </div>
 </template>
@@ -74,6 +77,8 @@ export default {
     };
 
     const handlePictureUpdate = async () => {
+      isPending.value = true;
+
       if (file.value && types.includes(file.value.type)) {
         await uploadImage(file.value);
         await deleteImage(originalFilePath.value);
