@@ -60,7 +60,7 @@ export default {
         await uploadImage(file.value);
         const res = await addDoc({
           name: name.value,
-          price: price.value,
+          price: parseFloat(price.value).toFixed(2),
           category: category.value,
           pictureUrl: url.value,
           filePath: filePath.value,

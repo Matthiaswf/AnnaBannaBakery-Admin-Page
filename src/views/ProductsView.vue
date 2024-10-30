@@ -6,7 +6,7 @@
         <h4>{{ category }}</h4>
         <div v-for="item in group" :key="item.id" class="product">
           <span class="name"> {{ item.name }}</span>
-          <span class="price">${{ item.price }}</span>
+          <span class="price">${{ Number(item.price).toFixed(2) }}</span>
         </div>
       </div>
     </div>
