@@ -16,6 +16,7 @@
 
     <button v-if="!isPending">Update Product</button>
     <button v-else disabled>Updating Product...</button>
+    <button type="button" @click="$emit('changeEditMode')">Cancel</button>
   </form>
 </template>
 
@@ -32,7 +33,7 @@ export default {
       'Fudge',
       'Scones',
       'Loaf',
-      'Cookie  Dough',
+      'Cookie Dough',
       'Special',
     ];
 
