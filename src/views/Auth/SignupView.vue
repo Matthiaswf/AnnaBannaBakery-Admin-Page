@@ -38,23 +38,28 @@ export default {
 
 <style scoped>
 form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
-  border: 1px solid var(--secondary);
-  background: white;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-input,
-textarea {
-  border: 0;
-  border-bottom: 1px solid var(--secondary);
-  padding: 10px;
-  outline: none;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 20px auto;
+input {
+  border-radius: 4px;
+  height: 2rem;
+  padding-left: 0.5rem;
+}
+button {
+  padding: 8px 12px;
+  font-size: 1em;
+  color: white;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100px;
+}
+.error {
+  color: red;
 }
 </style>
