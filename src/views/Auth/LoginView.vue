@@ -43,18 +43,20 @@ form {
   gap: 0.5rem;
 }
 input {
-  border-radius: 50px;
+  border-radius: 4px;
   height: 2rem;
   padding-left: 0.5rem;
 }
 button {
-  border-radius: 50px;
-  max-width: 100px;
-  height: 2rem;
-  background-color: var(--primary);
+  padding: 8px 12px;
+  font-size: 1em;
   color: white;
-  font-weight: bold;
+  background: #333;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  margin-top: 10px;
+  width: 100px;
 }
 .error {
   color: red;
