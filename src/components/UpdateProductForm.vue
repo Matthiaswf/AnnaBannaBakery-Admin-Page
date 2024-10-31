@@ -10,6 +10,16 @@
       <input type="text" v-model="description" />
       <label>Price</label>
       <input type="number" v-model="price" class="price" step="0.01" />
+      <div class="discount-check">
+        <label for="dozenDiscount">Dozen Discount: </label>
+        <input type="checkbox" v-model="dozenDiscount" />
+      </div>
+
+      <div class="dozen-discount-details" v-if="dozenDiscount">
+        <p class="instruction">Price decution per dozen</p>
+        <input type="number" step="0.01" v-model="dozenDiscountAmount" />
+      </div>
+
       <label for="category">Category</label>
       <select v-model="category">
         <option
@@ -65,6 +75,8 @@ export default {
     const name = ref(props.product.name);
     const description = ref(props.product.description);
     const price = ref(props.product.price);
+    const dozenDiscount = ref(props.product.dozenDiscount);
+    const dozenDiscountAmount = ref(props.product.dozenDiscountAmount);
     const category = ref(props.product.category);
     const file = ref(null);
     const fileError = ref(null);
@@ -75,6 +87,8 @@ export default {
         name: name.value,
         description: description.value,
         price: price.value,
+        dozenDiscount: dozenDiscount.value,
+        dozenDiscountAmount: dozenDiscountAmount.value,
         category: category.value,
       });
       context.emit('changeEditMode');
@@ -117,6 +131,8 @@ export default {
       name,
       description,
       price,
+      dozenDiscount,
+      dozenDiscountAmount,
       category,
       categories,
       handleUpdate,
@@ -220,5 +236,16 @@ button:disabled {
 }
 input[type='file'] {
   color: white;
+}
+
+.discount-check {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+}
+.discount-check input {
+  width: 20px;
+  margin-left: 0;
 }
 </style>
