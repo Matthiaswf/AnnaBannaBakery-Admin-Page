@@ -58,6 +58,7 @@
       </div>
     </div>
   </div>
+  <ShoppingList :order="order" />
 </template>
 
 <script>
@@ -65,8 +66,12 @@ import getDocument from '@/utils/getDocument';
 import useDocument from '@/utils/useDocument';
 import router from '@/router';
 import { ref } from 'vue';
+import ShoppingList from '@/components/ShoppingList.vue';
 
 export default {
+  components: {
+    ShoppingList,
+  },
   props: ['id'],
   setup(props) {
     const { document: order } = getDocument('orders', props.id);
@@ -90,6 +95,7 @@ export default {
       showPopup,
       handleDelete,
       handleUpdate,
+      ShoppingList,
     };
   },
 };
