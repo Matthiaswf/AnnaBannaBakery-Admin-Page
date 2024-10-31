@@ -1,9 +1,21 @@
 <template>
   <div class="shopping-list-container">
     <h2>Shopping List</h2>
-    <div v-if="order && order.cart">
-      <div v-for="(ingredient, name) in aggregatedIngredients" :key="name">
-        {{ name }}: {{ ingredient.quantity }} {{ ingredient.unit }}
+    <div v-if="!order || !order.cart || order.cart.length === 0">
+      <p>No items in the cart</p>
+    </div>
+    <div class="ingredient-list-container">
+      <div v-if="order && order.cart">
+        <div
+          v-for="(ingredient, name) in aggregatedIngredients"
+          :key="name"
+          class="ingredient"
+        >
+          <div class="name">{{ name }}</div>
+          <div class="quantity">
+            {{ ingredient.quantity }} {{ ingredient.unit }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +48,31 @@ export default {
 };
 </script>
 
-<style scoped></style>
-
-<style scoped></style>
+<style scoped>
+.shopping-list-container {
+  margin-top: 20px;
+}
+h2 {
+  margin-bottom: 10px;
+}
+.ingredient-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ingredient {
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.name {
+  width: 100px;
+}
+.quantity {
+  width: 100px;
+  text-align: right;
+}
+</style>
