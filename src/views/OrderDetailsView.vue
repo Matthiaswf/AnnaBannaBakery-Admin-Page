@@ -170,10 +170,13 @@ h3 {
   justify-content: space-around;
 }
 button {
-  padding: 10px;
+  padding: 8px 12px;
+  font-size: 1em;
+  color: white;
+  background: #333;
   border: none;
-  border-radius: 5px;
-  background-color: #f1f1f1;
+  border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
 }
 </style>

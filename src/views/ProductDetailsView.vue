@@ -120,12 +120,14 @@ img {
   justify-content: space-around;
 }
 button {
-  height: 40px;
-  width: 100px;
-  padding: 10px;
+  padding: 8px 12px;
+  min-width: 100px;
+  font-size: 1em;
+  color: white;
+  background: #333;
   border: none;
-  border-radius: 5px;
-  background-color: #f1f1f1;
+  border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
 }
 </style>
