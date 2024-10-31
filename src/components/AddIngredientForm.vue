@@ -32,6 +32,7 @@ export default {
       name.value = '';
       quantity.value = '';
       unit.value = '';
+      document.querySelector('input[placeholder="Ingredient"]').focus();
     };
 
     return {
