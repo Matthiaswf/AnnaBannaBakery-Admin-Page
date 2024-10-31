@@ -3,6 +3,12 @@
     <h4>Add a new Product</h4>
     <label for="name">Product Name</label>
     <input type="text" required v-model="name" />
+    <label for="description">Short Description</label>
+    <p class="instruction">* Keep it short (one line)</p>
+    <input
+      placeholder="For example: $10 dozen or Sheet only, no singles "
+      v-model="description"
+    ></input>
     <label for="price">Price</label>
     <p class="instruction">* 00.00 format please</p>
     <input
@@ -52,6 +58,7 @@ export default {
     const { error, addDoc } = useCollection('products');
 
     const name = ref('');
+    const description = ref('');
     const price = ref(0);
     const category = ref('');
     const file = ref(null);
@@ -65,6 +72,7 @@ export default {
         await uploadImage(file.value);
         const res = await addDoc({
           name: name.value,
+          description: description.value,
           price: parseFloat(price.value).toFixed(2),
           category: category.value,
           pictureUrl: url.value,
@@ -97,6 +105,7 @@ export default {
     return {
       categories,
       name,
+      description,
       price,
       category,
       file,
@@ -113,7 +122,6 @@ export default {
 h4 {
   margin: 0;
 }
-
 form {
   margin-top: 60px;
   max-width: 400px;
@@ -140,7 +148,7 @@ textarea {
   border-radius: 4px;
 }
 textarea {
-  min-height: 160px;
+  min-height: 22px;
   resize: none;
 }
 select {
