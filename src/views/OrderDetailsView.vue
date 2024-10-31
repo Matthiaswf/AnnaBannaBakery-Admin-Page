@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <div v-if="isPending" class="loading-message">Loading...</div>
     <div v-if="order" class="order-container">
       <div class="name-date">
         <h3>Order Nr. {{ order.id }}</h3>
@@ -59,7 +60,7 @@
         </div>
       </div>
     </div>
-    <ShoppingList :order="order" />
+    <ShoppingList :order="order" v-if="!isPending" />
   </div>
 </template>
 
@@ -67,6 +68,7 @@
 import getDocument from '@/utils/getDocument';
 import useDocument from '@/utils/useDocument';
 import router from '@/router';
+import { watchEffect } from 'vue';
 import { ref } from 'vue';
 import ShoppingList from '@/components/ShoppingList.vue';
 
@@ -76,10 +78,16 @@ export default {
   },
   props: ['id'],
   setup(props) {
+    const isPending = ref(false);
     const { document: order } = getDocument('orders', props.id);
     const { deleteDoc, updateDoc } = useDocument('orders', props.id);
 
     const showPopup = ref(false);
+
+    // Watch for changes in the orders collection
+    watchEffect(() => {
+      isPending.value = !order.value;
+    });
 
     const handleDelete = async () => {
       await deleteDoc();
@@ -93,6 +101,7 @@ export default {
     };
 
     return {
+      isPending,
       order,
       showPopup,
       handleDelete,
@@ -104,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+.loading-message {
+  margin-top: 20px;
+}
 .main-container {
   display: flex;
   justify-content: flex-start;
