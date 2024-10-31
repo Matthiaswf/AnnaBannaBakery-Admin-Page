@@ -1,52 +1,55 @@
 <template>
   <div class="product-details-container">
-    <h1>Preview</h1>
-    <div class="product-container" v-if="!editMode">
-      <div class="product" v-if="product">
-        <img :src="product.pictureUrl" :alt="product.name" />
-        <h3>{{ product.name }}</h3>
+    <div class="product-preview-container">
+      <h1>Preview</h1>
+      <div class="product-container" v-if="!editMode">
+        <div class="product" v-if="product">
+          <img :src="product.pictureUrl" :alt="product.name" />
+          <h3>{{ product.name }}</h3>
 
-        <p class="description">{{ product.description }}</p>
-        <p class="price">
-          Price: ${{
-            typeof product.price === 'number'
-              ? product.price.toFixed(2)
-              : product.price
-          }}
-        </p>
+          <p class="description">{{ product.description }}</p>
+          <p class="price">
+            Price: ${{
+              typeof product.price === 'number'
+                ? product.price.toFixed(2)
+                : product.price
+            }}
+          </p>
 
-        <div class="quantity-selector">
-          <button class="quantity-button">-</button>
-          <div class="quantity">0</div>
-          <button class="quantity-button">+</button>
-        </div>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="product-actions">
-      <button @click="editMode = true" v-if="!showPopup">Edit</button>
-      <button @click="showPopup = true" v-if="!showPopup">Delete</button>
-      <div
-        v-if="showPopup"
-        @close="showPopup = false"
-        class="delete-confirmation"
-      >
-        <div class="delete-warning-text">
-          <h3>Warning!</h3>
-          <p>This will permanently delete the product!</p>
-        </div>
-        <div class="delete-buttons">
-          <button @click="showPopup = false">Cancel</button>
-          <button @click="handleDelete">Delete</button>
+          <div class="quantity-selector">
+            <button class="quantity-button">-</button>
+            <div class="quantity">0</div>
+            <button class="quantity-button">+</button>
+          </div>
+          <button class="add-to-cart">Add to Cart</button>
         </div>
       </div>
+
+      <div class="product-actions">
+        <button @click="editMode = true" v-if="!showPopup">Edit</button>
+        <button @click="showPopup = true" v-if="!showPopup">Delete</button>
+        <div
+          v-if="showPopup"
+          @close="showPopup = false"
+          class="delete-confirmation"
+        >
+          <div class="delete-warning-text">
+            <h3>Warning!</h3>
+            <p>This will permanently delete the product!</p>
+          </div>
+          <div class="delete-buttons">
+            <button @click="showPopup = false">Cancel</button>
+            <button @click="handleDelete">Delete</button>
+          </div>
+        </div>
+      </div>
+      <UpdateProductForm
+        v-if="editMode"
+        :product="product"
+        @changeEditMode="editMode = false"
+      />
     </div>
-    <UpdateProductForm
-      v-if="editMode"
-      :product="product"
-      @changeEditMode="editMode = false"
-    />
+    <IngredientsList v-if="product" :product="product" />
   </div>
 </template>
 
@@ -56,10 +59,12 @@ import useDocument from '@/utils/useDocument';
 import router from '@/router';
 import { ref } from 'vue';
 import UpdateProductForm from '@/components/UpdateProductForm.vue';
+import IngredientsList from '@/components/IngredientsList.vue';
 
 export default {
   components: {
     UpdateProductForm,
+    IngredientsList,
   },
   props: ['id'],
   setup(props) {
@@ -80,13 +85,14 @@ export default {
       handleDelete,
       editMode,
       UpdateProductForm,
+      IngredientsList,
     };
   },
 };
 </script>
 
 <style scoped>
-.product-details-container {
+.product-preview-container {
   display: flex;
   flex-direction: column;
   align-items: center;
