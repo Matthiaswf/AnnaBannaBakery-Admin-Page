@@ -3,6 +3,10 @@
     <div class="product-details" v-if="product">
       <h2>{{ product.name }}</h2>
       <img :src="product.pictureUrl" :alt="product.name" />
+      <p>
+        Description: <br />
+        {{ product.description }}
+      </p>
       <p class="price">
         Price: ${{
           typeof product.price === 'number'

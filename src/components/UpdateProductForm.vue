@@ -5,7 +5,9 @@
 
       <label>Name:</label>
       <input type="text" v-model="name" />
-
+      <label>Description:</label>
+      <p class="instructions">*Keep it short, one line</p>
+      <input type="text" v-model="description" />
       <label>Price</label>
       <input type="number" v-model="price" class="price" step="0.01" />
       <label for="category">Category</label>
@@ -61,6 +63,7 @@ export default {
     const { isPending, updateDoc } = useDocument('products', props.product.id);
     const { filePath, url, uploadImage, deleteImage } = useStorage();
     const name = ref(props.product.name);
+    const description = ref(props.product.description);
     const price = ref(props.product.price);
     const category = ref(props.product.category);
     const file = ref(null);
@@ -70,6 +73,7 @@ export default {
     const handleUpdate = async () => {
       await updateDoc({
         name: name.value,
+        description: description.value,
         price: price.value,
         category: category.value,
       });
@@ -111,6 +115,7 @@ export default {
 
     return {
       name,
+      description,
       price,
       category,
       categories,
@@ -128,7 +133,10 @@ export default {
 h4 {
   margin: 0;
 }
-
+p {
+  margin: 0;
+  padding: 0;
+}
 form {
   margin-top: 60px;
   max-width: 400px;
