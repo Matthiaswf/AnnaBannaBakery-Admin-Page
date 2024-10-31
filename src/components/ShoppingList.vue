@@ -2,8 +2,8 @@
   <div class="shopping-list-container">
     <h2>Shopping List</h2>
     <div v-if="order && order.cart">
-      <div v-for="(quantity, name) in aggregatedIngredients" :key="name">
-        {{ name }}: {{ quantity }}
+      <div v-for="(ingredient, name) in aggregatedIngredients" :key="name">
+        {{ name }}: {{ ingredient.quantity }} {{ ingredient.unit }}
       </div>
     </div>
   </div>
@@ -20,9 +20,12 @@ export default {
           product.ingredients.forEach((ingredient) => {
             const totalQuantity = ingredient.quantity * product.quantity;
             if (ingredientsMap[ingredient.name]) {
-              ingredientsMap[ingredient.name] += totalQuantity;
+              ingredientsMap[ingredient.name].quantity += totalQuantity;
             } else {
-              ingredientsMap[ingredient.name] = totalQuantity;
+              ingredientsMap[ingredient.name] = {
+                quantity: totalQuantity,
+                unit: ingredient.unit,
+              };
             }
           });
         });
