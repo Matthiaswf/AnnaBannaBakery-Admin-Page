@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <h1>Orders</h1>
 
     <!-- Filter Nav -->
@@ -80,6 +80,14 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
 .order-container {
   height: 295px;
   width: 400px;
@@ -104,7 +112,7 @@ h1 {
 
 .filter {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 20px 0;
   margin-bottom: 60px;
 }

@@ -77,6 +77,7 @@ export default {
           category: category.value,
           pictureUrl: url.value,
           filePath: filePath.value,
+          ingredients: [],
           createdAt: timestamp(),
         });
         isPending.value = false;
