@@ -1,7 +1,7 @@
 <template>
   <div class="product-details-container">
     <div class="product-preview-container">
-      <h1>Preview</h1>
+      <h1 v-if="!editMode">Preview</h1>
       <div class="product-container" v-if="!editMode">
         <div class="product" v-if="product">
           <img :src="product.pictureUrl" :alt="product.name" />
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="product-actions">
+      <div class="product-actions" v-if="!editMode">
         <button @click="editMode = true" v-if="!showPopup">Edit</button>
         <button @click="showPopup = true" v-if="!showPopup">Delete</button>
         <div

@@ -18,6 +18,15 @@
       v-model="price"
       step="0.01"
     />
+    <div class="discount-check">
+      <label for="dozenDiscount">Dozen Discount: </label>
+      <input type="checkbox" v-model="dozenDiscount" />
+    </div>
+   
+   <div class="dozen-discount-details"v-if="dozenDiscount">
+   <p class="instruction">Price decution per dozen</p>
+   <input type="number"  step="0.01" v-model="dozenDiscountAmount">
+   </div>
     <label for="category">Category</label>
     <select v-model="category">
       <option v-for="category in categories" :key="category" :value="category">
@@ -60,6 +69,8 @@ export default {
     const name = ref('');
     const description = ref('');
     const price = ref(0);
+    const dozenDiscount = ref(false);
+    const dozenDiscountAmount = ref(0);
     const category = ref('');
     const file = ref(null);
     const fileError = ref(null);
@@ -74,6 +85,8 @@ export default {
           name: name.value,
           description: description.value,
           price: parseFloat(price.value).toFixed(2),
+          dozenDiscount: dozenDiscount.value,
+          dozenDiscountAmount: dozenDiscountAmount.value,
           category: category.value,
           pictureUrl: url.value,
           filePath: filePath.value,
@@ -108,6 +121,8 @@ export default {
       name,
       description,
       price,
+      dozenDiscount,
+      dozenDiscountAmount,
       category,
       file,
       fileError,
@@ -151,6 +166,16 @@ textarea {
 textarea {
   min-height: 22px;
   resize: none;
+}
+.discount-check {
+display: flex;
+flex-direction: column;
+align-items: left;
+justify-content: left;
+}
+.discount-check input {
+  width: 20px;
+  margin-left: 0;
 }
 select {
   padding: 8px 6px;
