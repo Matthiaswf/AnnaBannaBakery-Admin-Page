@@ -39,7 +39,7 @@
     </form>
     <form @submit.prevent="handlePictureUpdate" class="update-picture-form">
       <h4>Change Product Image</h4>
-      <p class="instruction">*Recommended image size 200x200px</p>
+      <p class="instruction">*Min size 200x200px</p>
       <input type="file" @change="handleChange" />
       <p class="error" v-if="fileError">{{ fileError }}</p>
       <div class="form-actions">

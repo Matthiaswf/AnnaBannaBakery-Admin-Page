@@ -34,7 +34,7 @@
       </option>
     </select>
     <label>Upload Product image </label>
-    <p class="instruction">*Recommended image size 200x200px</p>
+    <p class="instruction">*Min size 200x200px</p>
     <input type="file" @change="handleChange" />
     <div v-if="fileError" class="error">{{ fileError }}</div>
 
