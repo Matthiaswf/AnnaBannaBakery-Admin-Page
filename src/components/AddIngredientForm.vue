@@ -2,7 +2,12 @@
   <form @submit.prevent="handleSubmit">
     <h4>Add ingredient</h4>
     <input type="text" placeholder="Ingredient" v-model="name" />
-    <input type="number" placeholder="Quantity" v-model="quantity" />
+    <input
+      type="number"
+      placeholder="Quantity"
+      step="0.01"
+      v-model="quantity"
+    />
     <input type="text" placeholder="Unit" v-model="unit" />
     <button>Add Ingredient</button>
   </form>
