@@ -13,7 +13,7 @@
         >
           <div class="name">{{ name }}</div>
           <div class="quantity">
-            {{ ingredient.quantity }} {{ ingredient.unit }}
+            {{ ingredient.quantity.toFixed(2) }} {{ ingredient.unit }}
           </div>
         </div>
       </div>
