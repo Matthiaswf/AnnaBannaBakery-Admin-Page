@@ -27,10 +27,8 @@ The goal was to create a clean, self-contained backend tool that makes it easy f
 
 - Vue 3 (Composition API)  
 - Pinia for state management  
-- Firebase Firestore  
-- Tailwind CSS  
-- JavaScript, HTML  
-
+- Firebase Firestore
+  
 ---
 
 ## Feedback and Contributions
